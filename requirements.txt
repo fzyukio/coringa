@@ -1,0 +1,4 @@
+-r requirements/local.txt
+
+ipython
+psycopg2-binary
