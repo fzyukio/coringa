@@ -23,6 +23,7 @@ class Ledger(CommonModel):
             raise ValueError(_('Cannot set balance of unsaved ledger'))
 
     class Meta:
+
         app_label = "ledgers"
 
 

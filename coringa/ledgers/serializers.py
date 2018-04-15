@@ -3,7 +3,7 @@
 
 from rest_framework import serializers
 
-from .models import Ledger, Account, Payee, Transaction
+from ledgers.models import Ledger, Account, Payee, Transaction
 
 
 class AccountSerializer(serializers.ModelSerializer):
