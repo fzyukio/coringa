@@ -16,7 +16,7 @@ class TestLedgerAPI(APITestCase):
     """
 
     def setUp(self):
-        self.url = reverse('ledger-list')
+        self.url = reverse('api:ledger-list')
         self.user = UserFactory.build()
         self.user.save()
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
@@ -38,7 +38,7 @@ class TestLedgerDetailAPI(APITestCase):
         self.ledger = LedgerFactory.build()
         self.ledger.user = self.user
         self.ledger.save()
-        self.url = reverse('ledger-detail', kwargs={'pk': self.ledger.pk})
+        self.url = reverse('api:ledger-detail', kwargs={'pk': self.ledger.pk})
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
 
     def test_get_request_returns_ledger(self):

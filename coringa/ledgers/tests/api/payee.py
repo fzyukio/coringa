@@ -22,7 +22,7 @@ class TestPayeeAPI(APITestCase):
         self.ledger.user = self.user
         self.ledger.save()
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
-        self.url = reverse('payees-list', kwargs={'ledger_pk': self.ledger.pk})
+        self.url = reverse('api:payees-list', kwargs={'ledger_pk': self.ledger.pk})
         self.payee_data = model_to_dict(PayeeFactory.build())
 
     def test_post_request_with_no_data_fails(self):
@@ -44,7 +44,7 @@ class TestPayeeDetailAPI(APITestCase):
         self.payee = PayeeFactory.build()
         self.payee.ledger = self.ledger
         self.payee.save()
-        self.url = reverse('payee-detail', kwargs={'pk': self.payee.pk})
+        self.url = reverse('api:payee-detail', kwargs={'pk': self.payee.pk})
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
 
     def test_get_request_returns_payee(self):

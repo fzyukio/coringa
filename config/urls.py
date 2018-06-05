@@ -19,6 +19,7 @@ urlpatterns = [
 
     # Your stuff: custom urls includes go here
     url(r'^ledgers/', include("ledgers.urls", namespace='ledgers')),
+    url(r'^api/v1/', include("api.urls", namespace="api")),
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

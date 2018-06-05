@@ -24,6 +24,7 @@ class CreateFormWithUserMixin(object):
         obj.save()
         return http.HttpResponseRedirect(self.get_success_url())
 
+
 class NestedLedgerMixin(ShowOnlyUserObjectsMixin,
                         mixins.CreateModelMixin,
                         mixins.ListModelMixin,

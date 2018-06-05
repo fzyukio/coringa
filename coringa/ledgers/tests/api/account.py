@@ -22,7 +22,7 @@ class TestAccountAPI(APITestCase):
         self.ledger.user = self.user
         self.ledger.save()
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
-        self.url = reverse('accounts-list', kwargs={'ledger_pk': self.ledger.pk})
+        self.url = reverse('api:accounts-list', kwargs={'ledger_pk': self.ledger.pk})
         self.account_data = model_to_dict(AccountFactory.build())
 
     def test_post_request_with_no_data_fails(self):
@@ -31,6 +31,11 @@ class TestAccountAPI(APITestCase):
 
     def test_create_account(self):
         response = self.client.post(self.url, self.account_data)
+        eq_(response.status_code, 201)
+
+    def test_me(self):
+        url = reverse("api:accounts-list:me")
+        response = self.client.get(url)
         eq_(response.status_code, 201)
 
 
@@ -44,7 +49,7 @@ class TestAccountDetailAPI(APITestCase):
         self.account = AccountFactory.build()
         self.account.ledger = self.ledger
         self.account.save()
-        self.url = reverse('account-detail', kwargs={'pk': self.account.pk})
+        self.url = reverse('api:account-detail', kwargs={'pk': self.account.pk})
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
 
     def test_get_request_returns_account(self):

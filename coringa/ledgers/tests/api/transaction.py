@@ -28,7 +28,7 @@ class TestTransactionAPI(APITestCase):
         self.payee.ledger = self.ledger
         self.payee.save()
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
-        self.url = reverse('transactions-list', kwargs={'ledger_pk': self.ledger.pk})
+        self.url = reverse('api:transactions-list', kwargs={'ledger_pk': self.ledger.pk})
         transaction = TransactionFactory.build()
         transaction.account = self.account
         self.transaction_data = model_to_dict(transaction)
@@ -64,7 +64,7 @@ class TestTransactionDetailAPI(APITestCase):
         self.transaction.account = self.account
         self.transaction.payee = self.payee
         self.transaction.save()
-        self.url = reverse('transaction-detail', kwargs={'pk': self.transaction.pk})
+        self.url = reverse('api:transaction-detail', kwargs={'pk': self.transaction.pk})
         self.client.credentials(HTTP_AUTHORIZATION='Token {}'.format(self.user.auth_token))
 
     def test_get_request_returns_transaction(self):

@@ -17,3 +17,4 @@ class User(AbstractUser):
 
     class Meta:
         app_label = 'users'
+        swappable = 'AUTH_USER_MODEL'
