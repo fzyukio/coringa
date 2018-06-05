@@ -33,11 +33,6 @@ class TestAccountAPI(APITestCase):
         response = self.client.post(self.url, self.account_data)
         eq_(response.status_code, 201)
 
-    def test_me(self):
-        url = reverse("api:accounts-list:me")
-        response = self.client.get(url)
-        eq_(response.status_code, 201)
-
 
 class TestAccountDetailAPI(APITestCase):
     def setUp(self):

@@ -42,7 +42,6 @@ class TestTransactionAPI(APITestCase):
         obj['payee'] = {}
         obj['payee']['name'] = self.payee.name
         response = self.client.post(self.url, obj, format='json')
-        print(response.__dict__)
         eq_(response.status_code, 201)
 
 
